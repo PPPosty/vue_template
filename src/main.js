@@ -7,7 +7,7 @@ import axios from 'axios'
 const app = createApp(App)
 app.config.globalProperties.$axios=axios
 //设置反向代理，前端请求默认发送到 http://localhost:8888/api
-axios.defaults.baseURL = 'http://localhost:8888/api'
+axios.defaults.baseURL = 'https://342ap21576.zicp.fun/api'
 //阻止显示生产模式的消息
 app.config.productionTip = false
 

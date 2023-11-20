@@ -19,7 +19,7 @@
           <el-upload
             ref="upload"
             class="upload-demo"
-            action="http://localhost:8888/api/admin/fileInit"
+            action="https://342ap21576.zicp.fun/api/admin/fileInit"
             :limit="1"
             :on-exceed="handleExceed"
             list-type="picture"
