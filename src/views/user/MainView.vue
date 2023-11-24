@@ -1,44 +1,43 @@
 <template>
-  <div class="sc-wrapper">
-    <div class="search-bar" @click="switchShowInput(true)">
-      <div v-show="!showInput" class="text">查询景点</div>
-      <el-input
-        ref="inputRef"
-        v-show="showInput"
-        v-model="sname"
-        class="text"
-        placeholder="请输入查询内容"
-        @blur="switchShowInput(false)"
-      ></el-input>
-      <div class="icon" @click.stop="SeafchForm">
-        <svg
-          viewBox="0 0 32 32"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          role="presentation"
-          focusable="false"
-          style="
-            display: block;
-            fill: none;
-            height: 12px;
-            width: 12px;
-            stroke: currentcolor;
-            stroke-width: 5.33333;
-            overflow: visible;
-          "
-        >
-          <g fill="none">
-            <path
-              d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
-            ></path>
-          </g>
-        </svg>
+  <div class="wrapper">
+    <div class="sc-wrapper">
+      <h2 class="title">景点</h2>
+      <div class="search-bar" @click="switchShowInput(true)">
+        <div v-show="!showInput" class="text">查询景点</div>
+        <el-input
+          ref="inputRef"
+          v-show="showInput"
+          v-model="sname"
+          class="text"
+          placeholder="请输入查询内容"
+          @blur="switchShowInput(false)"
+        ></el-input>
+        <div class="icon" @click.stop="SeafchForm">
+          <svg
+            viewBox="0 0 32 32"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
+            role="presentation"
+            focusable="false"
+            style="
+              display: block;
+              fill: none;
+              height: 12px;
+              width: 12px;
+              stroke: currentcolor;
+              stroke-width: 5.33333;
+              overflow: visible;
+            "
+          >
+            <g fill="none">
+              <path
+                d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"
+              ></path>
+            </g>
+          </svg>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="wrapper">
-    <h2 class="title">景点</h2>
     <el-scrollbar>
       <div class="tabs">
         <div
@@ -52,30 +51,6 @@
       </div>
     </el-scrollbar>
     <div class="spots">
-      <div class="spot" v-for="(spot, index) in SpotListType[currentIndex]" :key="index" @click="handleSpotClick(spot)">
-        <div class="inner">
-          <div class="cover">
-            <img :src="require(`@/assets/uploadfile/${spot.spic}`)" class="image" />
-          </div>
-          <div class="name">{{ spot.sname }}</div>
-        </div>
-      </div>
-      <div class="spot" v-for="(spot, index) in SpotListType[currentIndex]" :key="index" @click="handleSpotClick(spot)">
-        <div class="inner">
-          <div class="cover">
-            <img :src="require(`@/assets/uploadfile/${spot.spic}`)" class="image" />
-          </div>
-          <div class="name">{{ spot.sname }}</div>
-        </div>
-      </div>
-      <div class="spot" v-for="(spot, index) in SpotListType[currentIndex]" :key="index" @click="handleSpotClick(spot)">
-        <div class="inner">
-          <div class="cover">
-            <img :src="require(`@/assets/uploadfile/${spot.spic}`)" class="image" />
-          </div>
-          <div class="name">{{ spot.sname }}</div>
-        </div>
-      </div>
       <div class="spot" v-for="(spot, index) in SpotListType[currentIndex]" :key="index" @click="handleSpotClick(spot)">
         <div class="inner">
           <div class="cover">
@@ -259,17 +234,17 @@ export default {
   transition: 0.3s;
 }
 .sc-wrapper {
-  position: relative;
+  padding: 50px 0;
   display: flex;
-  justify-content: center;
+  align-items: center;
   height: 48px;
+  gap: 32px;
 }
 .search-bar {
-  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 480px;
+  width: 550px;
   height: 48px;
   box-sizing: border-box;
   padding: 0 8px;
@@ -281,7 +256,7 @@ export default {
   }
   .text {
     padding: 0 16px;
-    color: #222;
+    color: #444;
     font-weight: 600;
   }
   :deep(.el-input__wrapper) {
