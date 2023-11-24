@@ -42,6 +42,10 @@
             ></el-input>
           </div>
 
+          <div class="form-item">
+            <el-input v-model="ruleForm.tel" size="large" placeholder="电话号" :prefix-icon="Iphone"></el-input>
+          </div>
+
           <div class="button-row">
             <el-button type="primary" @click="submitForm(ruleForm)">注册账号</el-button>
           </div>
