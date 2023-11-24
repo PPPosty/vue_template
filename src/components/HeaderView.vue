@@ -3,6 +3,12 @@
     <div class="logo">
       <div class="title" @click="$router.push('/user/main')">大连旅游网 - 首页</div>
     </div>
+    <div v-show="!hasLogin">
+      <div class="title" @click="$router.push('/user/addUserView')">注册</div>
+    </div>
+    <div v-show="!hasLogin">
+      <div class="title" @click="$router.push('/user/login')">登录</div>
+    </div>
     <div class="center"></div>
     <div class="cart" @click="$router.push('/shop/cart')">
       <svg t="1700835258629" viewBox="0 0 1024 1024" p-id="1503" width="20">
@@ -63,7 +69,7 @@
         ></path></svg
       >进入后台
     </div>
-    <div class="logout" @click="loginout">
+    <div v-show="hasLogin" class="logout" @click="loginout">
       <svg viewBox="0 0 1024 1024" width="22" height="22" fill="#fff">
         <path d="M113.777778 56.888889h56.888889v910.222222H113.777778z" width="60" height="60"></path>
         <path
@@ -114,8 +120,6 @@ export default {
     })
     // 初始化
     onMounted(() => {
-      console.log(123)
-
       if (window.sessionStorage.getItem('user') != null) {
         data.hasLogin = true
         data.user = JSON.parse(window.sessionStorage.getItem('user'))

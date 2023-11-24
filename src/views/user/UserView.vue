@@ -117,6 +117,7 @@ export default {
 </script>
 <style scoped lang="less">
 .login {
+  margin-top: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
