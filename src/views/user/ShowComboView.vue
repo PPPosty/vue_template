@@ -1,10 +1,10 @@
 <template>
-  <h3>景点搜索：</h3>
+  <h3>套餐搜索：</h3>
   <div class="wrapper">
     <!-- <div>
      <div >
         <el-row :gutter="20">
-          <el-col v-for="(Spot, index) in SpotList" :key="index" :span="4">
+          <el-col v-for="(Spot, index) in ComboList" :key="index" :span="4">
             <el-card :body-style="{ padding: '0px' }">
               <a :href="'/user/SpotDetails?sid='+Spot.sid">
               <img :src="require(`@/assets/uploadfile/${Spot.spic}`)" class="image" />
@@ -18,7 +18,7 @@
       </div>
     </div> -->
     <div class="spots">
-      <div class="spot" v-for="(spot, index) in SpotList" :key="index" @click="handleSpotClick(spot)">
+      <div class="spot" v-for="(spot, index) in ComboList" :key="index" @click="handleSpotClick(spot)">
         <div class="inner">
           <div class="cover">
             <img :src="require(`@/assets/uploadfile/${spot.spic}`)" class="image" />
@@ -33,26 +33,26 @@
 // import axios from "@/util/request"
 import axios from 'axios'
 import { reactive, toRefs, onMounted } from 'vue'
-import { useRouter } from 'vue-router'
 import { useStore } from 'vuex'
+import { useRouter } from 'vue-router'
 export default {
   name: 'userMain',
   setup() {
     // 初始化,获得主页面所需数据
     const store = useStore()
+    const router = useRouter()
     onMounted(() => {
       data.sname = store.state.sname
-      axios.post('/user/selectSpotBySname?sname=' + data.sname).then((res) => {
-        data.SpotList = res.data.SpotList
+      axios.post('/user/selectComboBySname?sname=' + data.sname).then((res) => {
+        data.ComboList = res.data.ComboList
       })
     })
     const data = reactive({
-      SpotList: [],
+      ComboList: [],
       sname: '',
     })
-    const router = useRouter()
     const handleSpotClick = (spot) => {
-      router.push(`/user/SpotDetails?sid=${spot.sid}`)
+      router.push(`/user/ComboDetails?sid=${spot.sid}`)
     }
     // 所有的变量和方法，需要在return返回，外界才能访问
     return {

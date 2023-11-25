@@ -6,7 +6,7 @@
         <img class="media-object" :src="require(`@/assets/uploadfile/${spic}`)" width="500" />
       </a>
       <div class="media-body" style="padding-left: 30px">
-        <h3 class="media-heading" style="margin-bottom: 18px">&nbsp; 景点名称：{{ Spot.sname }}</h3>
+        <h3 class="media-heading" style="margin-bottom: 18px">&nbsp; 套餐名称：{{ Spot.sname }}</h3>
         <div class="col-md-8">
           <div class="heatView">门票销量：{{ Spot.salenum }}</div>
           <hr />

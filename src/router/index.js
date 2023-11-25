@@ -1,142 +1,165 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import store from '../store/index'
 
-
 const routes = [
   //管理员
   {
     path: '/admin/login',
-    component: () => import('../views/admin/LoginView.vue')
+    component: () => import('../views/admin/LoginView.vue'),
   },
   {
     path: '/admin/main',
     component: () => import('../views/admin/MainView.vue'),
-    redirect: "/admin/showSpot",
+    redirect: '/admin/showSpot',
     children: [
       {
         path: '/admin/addSpot',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/SpotAddView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/SpotAddView.vue'),
       },
       {
         path: '/admin/showSpot',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/SpotManageView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/SpotManageView.vue'),
+      },
+      {
+        path: '/admin/addCombo',
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/ComboAddView.vue'),
+      },
+      {
+        path: '/admin/showCombo',
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/ComboManageView.vue'),
       },
       {
         path: '/admin/showUser',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/UserManageView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/UserManageView.vue'),
       },
       {
         path: '/admin/updateSpot',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/SpotUpdateView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/SpotUpdateView.vue'),
+      },
+      {
+        path: '/admin/updateCombo',
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/ComboUpdateView.vue'),
       },
       {
         path: '/admin/addType',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/TypeAddView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/TypeAddView.vue'),
       },
       {
         path: '/admin/showType',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/TypeManageView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/TypeManageView.vue'),
       },
       {
         path: '/admin/updateType',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/TypeUpdateView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/TypeUpdateView.vue'),
       },
       {
         path: '/admin/showOrder',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/OrderManagerView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/OrderManagerView.vue'),
       },
       {
         path: '/admin/showOrderDetail',
-        meta: { act: "admin" },
-        component: () => import('../views/admin/OrderDetailManageView.vue')
+        meta: { act: 'admin' },
+        component: () => import('../views/admin/OrderDetailManageView.vue'),
       },
-    ]
+    ],
   },
   //前台用户
   {
     path: '/',
     component: () => import('../views/user/HomeView.vue'),
-    redirect: "/user/main",
+    redirect: '/user/main',
     children: [
       {
         path: '/user/main',
-        component: () => import('../views/user/MainView.vue')
+        component: () => import('../views/user/MainView.vue'),
+      },
+      {
+        path: '/user/combo',
+        component: () => import('../views/user/Combo.vue'),
       },
       {
         path: '/user/ShowSpot',
-        component: () => import('../views/user/ShowSpotView.vue')
+        component: () => import('../views/user/ShowSpotView.vue'),
+      },
+      {
+        path: '/user/ShowCombo',
+        component: () => import('../views/user/ShowComboView.vue'),
       },
       {
         path: '/user/SpotDetails',
-        component: () => import('../views/user/SpotDetailView.vue')
+        component: () => import('../views/user/SpotDetailView.vue'),
+      },
+      {
+        path: '/user/ComboDetails',
+        component: () => import('../views/user/ComboDetailView.vue'),
       },
       {
         path: '/user/addUserView',
-        component: () => import('../views/user/AddUserView.vue')
+        component: () => import('../views/user/AddUserView.vue'),
       },
       {
         path: '/user/userView',
-        component: () => import('../views/user/UserView.vue')
+        component: () => import('../views/user/UserView.vue'),
       },
 
       {
         path: '/user/login',
-        component: () => import('../views/user/LoginView.vue')
+        component: () => import('../views/user/LoginView.vue'),
       },
       {
         path: '/shop/Cart',
-        meta:{act:"shop"},
-        component: () => import('../views/user/CartView.vue')
+        meta: { act: 'shop' },
+        component: () => import('../views/user/CartView.vue'),
       },
 
       {
         path: '/shop/orderConfirm',
-        meta:{act:"shop"},
-        component: () => import('../views/user/OrderConfirmView.vue')
+        meta: { act: 'shop' },
+        component: () => import('../views/user/OrderConfirmView.vue'),
       },
       {
         path: '/shop/orderDone',
-        meta:{act:"shop"},
-        component: () => import('../views/user/OrderDone.vue')
+        meta: { act: 'shop' },
+        component: () => import('../views/user/OrderDone.vue'),
       },
       {
         path: '/shop/orderView',
-        meta:{act:"shop"},
-        component: () => import('../views/user/OrderView.vue')
+        meta: { act: 'shop' },
+        component: () => import('../views/user/OrderView.vue'),
       },
       {
         path: '/shop/orderDetailView',
-        meta:{act:"shop"},
-        component: () => import('../views/user/OrderDetailView.vue')
+        meta: { act: 'shop' },
+        component: () => import('../views/user/OrderDetailView.vue'),
       },
-
-
-    ]
+    ],
   },
   {
     path: '/about',
     name: 'about',
-    component: () => import('../views/AboutView.vue')
+    component: () => import('../views/AboutView.vue'),
   },
   {
     path: '/storeDemo',
-    component: () => import('../views/demo/StoreView.vue')
-  }
+    component: () => import('../views/demo/StoreView.vue'),
+  },
 ]
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
+  routes,
 })
-
 
 // router.beforeEach((to,from,next)=>{
 //   /**
@@ -163,7 +186,5 @@ const router = createRouter({
 //   }
 
 // })
-
-
 
 export default router

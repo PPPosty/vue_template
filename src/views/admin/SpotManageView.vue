@@ -20,7 +20,7 @@
       <el-table-column prop="saleprice" label="单价" width="80" />
       <el-table-column label="Operations">
         <template #default="scope">
-          <el-button type="danger" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button type="primary" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-popconfirm title="确定要删除吗？" @confirm="handleDelete(scope.$index, scope.row)">
             <template #reference>
               <el-button type="danger" size="small">删除</el-button>
@@ -30,7 +30,9 @@
       </el-table-column>
     </el-table>
     <div>
-      <span v-if="currPage > 1"><button @click="getPre" class="btn btn-primary" round>上一页</button></span>
+      <span v-if="currPage > 1"
+        ><button @click="getPre" class="btn btn-primary" round style="margin-right: 16px">上一页</button></span
+      >
       <span v-if="hasNext == 'yes'"><button @click="getNext" class="btn btn-primary" round>下一页</button></span>
     </div>
   </div>

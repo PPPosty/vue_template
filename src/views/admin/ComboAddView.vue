@@ -1,19 +1,19 @@
 <template>
   <div style="width: 60vw; color: black; margin: 40px auto">
-    <div class="panel-heading">景点添加</div>
+    <div class="panel-heading">套餐添加</div>
     <div class="panel-body">
       <el-form ref="ruleFormRef" :model="Spot" status-icon :rules="rules" label-width="120px" class="demo-ruleForm">
-        <el-form-item label="景点名:" prop="sname">
-          <el-input v-model="Spot.sname" autocomplete="off" placeholder="请输入景点名称：" />
+        <el-form-item label="套餐名:" prop="sname">
+          <el-input v-model="Spot.sname" autocomplete="off" placeholder="请输入套餐名称：" />
         </el-form-item>
-        <el-form-item label="门票价格:" prop="saleprice">
+        <el-form-item label="套餐价格:" prop="saleprice">
           <el-input v-model="Spot.saleprice" type="number" autocomplete="off" />
         </el-form-item>
         <el-form-item class="cover" label="封面:">
           <el-upload
             ref="upload"
             class="upload-demo"
-            action="http://8.134.144.226:8888/api/admin/fileInit"
+            action="http://8.134.144.226:8888/api/admin/combo/fileInit"
             :limit="1"
             :on-exceed="handleExceed"
             list-type="picture"
@@ -26,12 +26,6 @@
             </template>
           </el-upload>
         </el-form-item>
-
-        <el-form-item label="类型" prop="tname">
-          <el-select v-model="Spot.tname" placeholder="请选择……" style="width: 100%">
-            <el-option v-for="item in typeList" :key="item.tid" :value="item.tname"></el-option>
-          </el-select>
-        </el-form-item>
         <el-form-item>
           <el-button type="danger" @click="submitForm(Spot)">添加</el-button>
           <el-button @click="resetForm(Spot)">重置</el-button>
@@ -41,7 +35,7 @@
   </div>
 </template>
 <script>
-import { onMounted, reactive, toRefs, ref } from 'vue'
+import { reactive, toRefs, ref } from 'vue'
 import axios from 'axios'
 import { genFileId } from 'element-plus'
 export default {
@@ -53,20 +47,9 @@ export default {
       Spot: {
         rec: 1,
       },
-      typeList: {},
     })
 
     const login = () => {}
-
-    //实现页面初始化
-    onMounted(() => {
-      axios
-        .get('/admin/getTypeList')
-        .then((res) => {
-          data.typeList = res.data.typeList
-        })
-        .catch((error) => {})
-    })
     // 图片替换
     const handleExceed = (files) => {
       upload.value.clearFiles()
@@ -81,7 +64,7 @@ export default {
 
     //实现图上添加
     const submitForm = (Spot) => {
-      axios.post('/admin/addSpot', Spot).then((res) => {
+      axios.post('/admin/addCombo', Spot).then((res) => {
         if (res.data === 'ok') {
           alert('添加成功！')
           data.Spot = { rec: 1 }
@@ -115,7 +98,6 @@ export default {
     }
   }
 }
-
 .panel-heading {
   font-weight: 700;
   font-size: 20px;

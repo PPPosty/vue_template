@@ -2,7 +2,7 @@
   <div>
     <el-row class="tac">
       <el-col :span="24">
-        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo">
+        <el-menu :default-active="activeMenu" :default-openeds="[activeMenu]" class="el-menu-vertical-demo">
           <el-sub-menu index="1">
             <template #title>
               <el-icon><UserFilled /></el-icon>
@@ -31,13 +31,13 @@
               <el-icon><eleme /></el-icon>
               <span>套餐管理</span>
             </template>
-            <el-menu-item index="/admin/addSpot2"><a href="/admin/addSpot2">添加套餐</a></el-menu-item>
-            <el-menu-item index="/admin/showSpot2"><a href="/admin/showSpot2">管理套餐</a></el-menu-item>
+            <el-menu-item index="/admin/addCombo"><a href="/admin/addCombo">添加套餐</a></el-menu-item>
+            <el-menu-item index="/admin/showCombo"><a href="/admin/showCombo">管理套餐</a></el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="4">
             <template #title>
               <el-icon><DocumentCopy /></el-icon>
-              <span>售票管理</span>
+              <span>销售管理</span>
             </template>
             <el-menu-item index="/admin/showOrder"><a href="/admin/showOrder">售票订单</a></el-menu-item>
           </el-sub-menu>
@@ -82,6 +82,9 @@ a {
 }
 :deep(.el-menu-item) {
   background-color: #0f0303;
+  // a {
+  //   color: ;
+  // }
   &.is-active {
     background-color: #409eff;
     a {
@@ -92,6 +95,14 @@ a {
 
 :deep(.el-menu-item) {
   background-color: #0f0303;
+  padding: 0 !important;
+  a {
+    display: block;
+    text-align: left;
+    padding: 0 20px 0 40px;
+    width: 100%;
+    box-sizing: border-box;
+  }
   &.is-activ {
     background-color: #409eff;
     color: #fff;

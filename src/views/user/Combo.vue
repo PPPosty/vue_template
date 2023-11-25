@@ -1,9 +1,9 @@
 <template>
   <div class="wrapper">
     <div class="sc-wrapper">
-      <h2 class="title">景点</h2>
+      <h2 class="title">套餐</h2>
       <div class="search-bar" @click="switchShowInput(true)">
-        <div v-show="!showInput" class="text">查询景点</div>
+        <div v-show="!showInput" class="text">查询套餐</div>
         <el-input
           ref="inputRef"
           v-show="showInput"
@@ -38,20 +38,8 @@
         </div>
       </div>
     </div>
-    <el-scrollbar>
-      <div class="tabs">
-        <div
-          :class="['tab', currentIndex === index ? 'active' : '']"
-          v-for="(type, index) in typeList"
-          :key="index"
-          @click="handleScenicClick(index)"
-        >
-          {{ type.tname }}
-        </div>
-      </div>
-    </el-scrollbar>
     <div class="spots">
-      <div class="spot" v-for="(spot, index) in SpotListType[currentIndex]" :key="index" @click="handleSpotClick(spot)">
+      <div class="spot" v-for="(spot, index) in ComboList" :key="index" @click="handleSpotClick(spot)">
         <div class="inner">
           <div class="cover">
             <img :src="require(`@/assets/uploadfile/${spot.spic}`)" class="image" />
@@ -64,7 +52,6 @@
 </template>
 
 <script>
-// import axios from "@/util/request"
 import axios from 'axios'
 import { useRouter } from 'vue-router'
 import { ref, reactive, toRefs, onMounted } from 'vue'
@@ -88,26 +75,24 @@ export default {
     }
     // 初始化,获得主页面所需数据
     onMounted(() => {
-      axios.get('/user/selectSpotForMain').then((res) => {
-        data.typeList = res.data.typeList
-        console.log('类型', data.typeList)
+      axios.get('/user/selectComboForMain').then((res) => {
         data.SpotListType = res.data.SpotListType
         console.log('多种数据', data.SpotListType)
-        data.SpotList = res.data.SpotList
+        data.ComboList = res.data.ComboList
       })
     })
     const data = reactive({
-      typeList: [],
       //按照类型保存对应玩具信息
       SpotListType: [],
       sname: '',
+      ComboList: [],
     })
     const SeafchForm = () => {
       if (!data.sname.length) {
         return
       }
       store.commit('setSname', data.sname)
-      router.push('/user/ShowSpot')
+      router.push('/user/ShowCombo')
     }
 
     const handleScenicClick = (index) => {
@@ -115,7 +100,7 @@ export default {
     }
 
     const handleSpotClick = (spot) => {
-      router.push(`/user/SpotDetails?sid=${spot.sid}`)
+      router.push(`/user/ComboDetails?sid=${spot.sid}`)
     }
 
     // 所有的变量和方法，需要在return返回，外界才能访问

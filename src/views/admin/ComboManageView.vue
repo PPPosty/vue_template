@@ -1,19 +1,26 @@
 <template>
   <div>
     <el-table
-      :data="TypeList"
+      :data="ComboList"
       style="width: 100%"
       border
       :cell-style="{ textAlign: 'center' }"
       :header-cell-style="{ backgroundColor: '#eef5ff', textAlign: 'center' }"
-      @selection-change="handleSelectionChange"
     >
       <el-table-column type="index" width="60" label="序号" :index="indexMethod((currPage - 1) * 5 + 1)">
       </el-table-column>
-      <el-table-column prop="tname" label="景点分类" width="120" />
+      <el-table-column prop="sname" label="套餐名称" width="120" />
+      <el-table-column label="图片" width="100">
+        <template #default="scope">
+          <div v-if="scope.row.spic != null">
+            <img :src="require(`@/assets/uploadfile/${scope.row.spic}`)" width="80" />
+          </div>
+        </template>
+      </el-table-column>
+      <el-table-column prop="saleprice" label="单价" width="80" />
       <el-table-column label="Operations">
         <template #default="scope">
-          <el-button size="small" type="primary" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button type="primary" size="small" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
           <el-popconfirm title="确定要删除吗？" @confirm="handleDelete(scope.$index, scope.row)">
             <template #reference>
               <el-button type="danger" size="small">删除</el-button>
@@ -34,47 +41,44 @@
 import router from '@/router'
 import axios from 'axios'
 import { onMounted, reactive, toRefs } from 'vue'
-import { useStore } from 'vuex'
 import { useRoute } from 'vue-router'
 export default {
   name: 'type',
   setup() {
     //页面初始化方法
-    const store = useStore()
     const route = useRoute()
     const data = reactive({
-      TypeList: [],
+      ComboList: [],
       currPage: 1,
       hasNext: '',
-      TypeMulti: [],
+      ComboMulti: [],
     })
 
-    // 初始化获得商品信息
+    // 初始化获得景点信息
     onMounted(() => {
       if (route.query.currPage != null) {
-        console.log('A')
         data.currPage = route.query.currPage
       } else {
         console.log('B')
       }
-      axios.get('/admin/getTypeByPage?currPage=' + data.currPage).then((res) => {
-        data.TypeList = res.data.TypeList
+      axios.get('/admin/getComboByPage?currPage=' + data.currPage).then((res) => {
+        data.ComboList = res.data.ComboList
         data.hasNext = res.data.hasNext
       })
     })
     //上一页
     const getPre = () => {
       data.currPage = data.currPage - 1
-      axios.get('/admin/getTypeByPage?currPage=' + data.currPage).then((res) => {
-        data.TypeList = res.data.TypeList
+      axios.get('/admin/getComboByPage?currPage=' + data.currPage).then((res) => {
+        data.ComboList = res.data.ComboList
         data.hasNext = res.data.hasNext
       })
     }
     //下一页
     const getNext = () => {
       data.currPage = data.currPage + 1
-      axios.get('/admin/getTypeByPage?currPage=' + data.currPage).then((res) => {
-        data.TypeList = res.data.TypeList
+      axios.get('/admin/getComboByPage?currPage=' + data.currPage).then((res) => {
+        data.ComboList = res.data.ComboList
         data.hasNext = res.data.hasNext
       })
     }
@@ -85,12 +89,12 @@ export default {
     //  实现删除
     const handleDelete = (index, row) => {
       console.log('删除', index, row)
-      axios.get('/admin/deleteTypeByID?Typeid=' + row.Typeid).then((res) => {
+      axios.get('/admin/deleteComboByID?sid=' + row.sid).then((res) => {
         if (res.data === 'ok') {
           alert('删除成功！')
           //********刷新页面********************************* */
-          axios.get('/admin/getTypeByPage?currPage=' + data.currPage).then((res) => {
-            data.TypeList = res.data.TypeList
+          axios.get('/admin/getComboByPage?currPage=' + data.currPage).then((res) => {
+            data.ComboList = res.data.ComboList
             data.hasNext = res.data.hasNext
           })
           //************************************************** */
@@ -102,17 +106,17 @@ export default {
     // 实现多选
     const handleSelectionChange = (val) => {
       console.log('多选', val)
-      data.TypeMulti = val
+      data.ComboMulti = val
     }
 
     //  实现批量删除
     const handMultiDelete = () => {
-      axios.post('/admin/deleteTypeMulti', data.TypeMulti).then((res) => {
+      axios.post('/admin/deleteComboMulti', data.ComboMulti).then((res) => {
         if (res.data === 'ok') {
           alert('删除成功！')
           //********刷新页面********************************* */
-          axios.get('/admin/getTypeByPage?currPage=' + data.currPage).then((res) => {
-            data.TypeList = res.data.TypeList
+          axios.get('/admin/getComboByPage?currPage=' + data.currPage).then((res) => {
+            data.ComboList = res.data.ComboList
             data.hasNext = res.data.hasNext
           })
           //************************************************** */
@@ -123,9 +127,8 @@ export default {
     }
     // 实现修页面跳转
     const handleEdit = (index, row) => {
-      window.sessionStorage.setItem('Type', JSON.stringify(row))
-
-      router.push('/admin/updateType?currPage=' + data.currPage)
+      window.sessionStorage.setItem('Combo', JSON.stringify(row))
+      router.push('/admin/updateCombo?currPage=' + data.currPage)
     }
     const login = () => {}
 

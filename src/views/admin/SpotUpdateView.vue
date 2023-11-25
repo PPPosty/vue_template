@@ -1,6 +1,6 @@
 <template>
   <div style="width: 60vw; margin: 40px auto">
-    <div class="panel-heading">景点修改页面</div>
+    <div class="panel-heading">景点修改</div>
     <div class="panel-body">
       <el-form ref="ruleFormRef" :model="Spot" status-icon label-width="120px" class="demo-ruleForm">
         <el-form-item label="景点名:" prop="sname">
@@ -125,5 +125,10 @@ export default {
       font-weight: 700;
     }
   }
+}
+
+.panel-heading {
+  font-weight: 700;
+  font-size: 20px;
 }
 </style>

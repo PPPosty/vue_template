@@ -13,7 +13,7 @@
         >
           <el-table-column type="selection" width="80" />
           <el-table-column type="index" label="序号" width="80" />
-          <el-table-column label="景点名称" prop="sname" />
+          <el-table-column label="名称" prop="sname" />
           <el-table-column label="封面" width="100">
             <template #default="scope">
               <div v-if="scope.row.spic != null">
