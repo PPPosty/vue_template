@@ -9,7 +9,7 @@
         <el-form-item label="门票价格:" prop="saleprice">
           <el-input v-model="Spot.saleprice" type="number" autocomplete="off" />
         </el-form-item>
-        <el-form-item label="封面">
+        <el-form-item class="cover" label="封面:">
           <el-upload
             ref="upload"
             class="upload-demo"
@@ -102,4 +102,17 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped lang="less">
+.el-form {
+  :deep(.el-upload) {
+    .el-upload__input {
+      display: none !important;
+    }
+  }
+  .cover {
+    :deep(.el-form-item__label) {
+      font-weight: 700;
+    }
+  }
+}
+</style>

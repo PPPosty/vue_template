@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="title">大连旅游网站</div>
+    <div class="title">大连旅游网站 - 后台</div>
     <div class="right">
       <svg viewBox="0 0 1024 1024" width="24">
         <path
@@ -33,6 +33,7 @@ img {
   object-fit: cover;
 }
 .header {
+  z-index: 999;
   background-color: #fff;
   border-bottom: 1px solid #efefef;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);

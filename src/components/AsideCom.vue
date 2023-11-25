@@ -1,38 +1,45 @@
 <template>
-  <br />
-  <div style="height: 90vh">
+  <div>
     <el-row class="tac">
       <el-col :span="24">
-        <el-menu default-active="2" class="el-menu-vertical-demo">
+        <el-menu :default-active="activeMenu" class="el-menu-vertical-demo">
           <el-sub-menu index="1">
             <template #title>
-              <el-icon><eleme /></el-icon>
+              <el-icon><UserFilled /></el-icon>
               <span>用户管理</span>
             </template>
-            <el-menu-item index="1-2"><a href="/admin/showUser">管理用户</a></el-menu-item>
+            <el-menu-item index="/admin/showUser"><a href="/admin/showUser">管理用户</a></el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="2">
             <template #title>
-              <el-icon><eleme /></el-icon>
+              <el-icon><Menu /></el-icon>
               <span>类型管理</span>
             </template>
-            <el-menu-item index="2-1"><a href="/admin/addType">添加类型</a></el-menu-item>
-            <el-menu-item index="2-2"><a href="/admin/showType">管理类型</a></el-menu-item>
+            <el-menu-item index="/admin/addType"><a href="/admin/addType">添加类型</a></el-menu-item>
+            <el-menu-item index="/admin/showType"><a href="/admin/showType">管理类型</a></el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="3">
             <template #title>
-              <el-icon><eleme /></el-icon>
+              <el-icon><OfficeBuilding /></el-icon>
               <span>景点管理</span>
             </template>
-            <el-menu-item index="3-1"><a href="/admin/addSpot">添加景点</a></el-menu-item>
-            <el-menu-item index="3-2"><a href="/admin/showSpot">管理景点</a></el-menu-item>
+            <el-menu-item index="/admin/addSpot"><a href="/admin/addSpot">添加景点</a></el-menu-item>
+            <el-menu-item index="/admin/showSpot"><a href="/admin/showSpot">管理景点</a></el-menu-item>
+          </el-sub-menu>
+          <el-sub-menu index="5 ">
+            <template #title>
+              <el-icon><eleme /></el-icon>
+              <span>套餐管理</span>
+            </template>
+            <el-menu-item index="/admin/addSpot2"><a href="/admin/addSpot2">添加套餐</a></el-menu-item>
+            <el-menu-item index="/admin/showSpot2"><a href="/admin/showSpot2">管理套餐</a></el-menu-item>
           </el-sub-menu>
           <el-sub-menu index="4">
             <template #title>
-              <el-icon><eleme /></el-icon>
+              <el-icon><DocumentCopy /></el-icon>
               <span>售票管理</span>
             </template>
-            <el-menu-item index="4-1"><a href="/admin/showOrder">售票订单</a></el-menu-item>
+            <el-menu-item index="/admin/showOrder"><a href="/admin/showOrder">售票订单</a></el-menu-item>
           </el-sub-menu>
         </el-menu>
       </el-col>
@@ -40,7 +47,8 @@
   </div>
 </template>
 <script>
-import { reactive, toRefs } from 'vue'
+import { reactive, toRefs, computed } from 'vue'
+import { useRoute } from 'vue-router'
 export default {
   name: 'type',
   setup() {
@@ -49,13 +57,44 @@ export default {
       name: '大红',
     })
     const login = () => {}
+    const route = useRoute()
+    const activeMenu = computed(() => {
+      console.log(route.path || '')
+      return route.path || ''
+    })
 
     // 所有的变量和方法，需要在return返回，外界才能访问
     return {
       ...toRefs(data),
       login,
+      activeMenu,
     }
   },
 }
 </script>
-<style scoped></style>
+<style scoped lang="less">
+a {
+  text-decoration: none;
+}
+:deep(.el-sub-menu__title) {
+  background-color: #001529;
+  color: rgba(254, 254, 254, 0.65);
+}
+:deep(.el-menu-item) {
+  background-color: #0f0303;
+  &.is-active {
+    background-color: #409eff;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+:deep(.el-menu-item) {
+  background-color: #0f0303;
+  &.is-activ {
+    background-color: #409eff;
+    color: #fff;
+  }
+}
+</style>

@@ -139,6 +139,7 @@ export default {
 }
 
 .wrapper {
+  padding: 4px 0 25px;
   width: 1032px;
   margin: 0 auto;
 }

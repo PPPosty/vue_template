@@ -2,9 +2,8 @@
   <div class="common-layout">
     <HeaderCom></HeaderCom>
     <el-container>
-      <el-header></el-header>
       <el-container>
-        <el-aside width="240px"> <AsideCom /> </el-aside>
+        <el-aside><AsideCom /></el-aside>
         <el-main style="background-color: white">
           <router-view></router-view>
         </el-main>
@@ -37,4 +36,9 @@ export default {
   },
 }
 </script>
-<style scoped></style>
+<style scoped lang="less">
+.el-aside {
+  background-color: #001529;
+  min-height: calc(100vh - 328px);
+}
+</style>

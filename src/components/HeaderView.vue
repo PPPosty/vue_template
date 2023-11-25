@@ -95,6 +95,7 @@
       安全退出
     </div>
   </div>
+  <div style="height: 60px"></div>
   <!-- *******************************************************************88 -->
 </template>
 
@@ -147,13 +148,17 @@ export default {
 
 <style scoped lang="less">
 .nav-bar {
-  position: sticky;
+  z-index: 999;
+  position: fixed;
+  width: 100%;
   top: 0;
   height: 60px;
   background-color: #000;
   display: flex;
   align-items: center;
   color: #fff;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 0 3px 0 rgba(0, 0, 0, 0.04);
+
   > * {
     display: flex;
     align-items: center;
