@@ -8,10 +8,10 @@
       <div class="media-body" style="padding-left: 30px">
         <h3 class="media-heading" style="margin-bottom: 18px">&nbsp; 套餐名称：{{ Spot.sname }}</h3>
         <div class="col-md-8">
-          <div class="heatView">门票销量：{{ Spot.salenum }}</div>
+          <div class="heatView">套餐销量：{{ Spot.salenum }}</div>
           <hr />
           <p>
-            门票售价： <span style="color: red">{{ Spot.saleprice }} </span>
+            套餐售价： <span style="color: red">{{ Spot.saleprice }} </span>
           </p>
           <!-- ********************实现购买的form表单***************************** -->
           <el-form label-width="120px" style="margin-left: -75px">

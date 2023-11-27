@@ -1,6 +1,6 @@
 <template>
   <div class="header">
-    <div class="title">大连旅游网站 - 后台</div>
+    <div class="title">旅游网站 - 后台</div>
     <div class="right">
       <svg viewBox="0 0 1024 1024" width="24">
         <path

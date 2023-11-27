@@ -37,7 +37,7 @@
     <div class="login-box">
       <div class="login-form-wrapper">
         <div style="transform: translateZ(0px); opacity: 1">
-          <h2>大连旅游网后台登录</h2>
+          <h2>旅游网后台登录</h2>
 
           <a href="/user/main">前往首页</a>
         </div>
